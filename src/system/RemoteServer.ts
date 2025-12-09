@@ -408,7 +408,9 @@ class TremoteServer extends TstructDescr{
 				console.log(input)
 				return this.handleErrorMessage(port,data)
 			case "B": return //this.sendTypeReq()
-			case "t": return this.handleTypeMessage(port,data)
+			case "t": 
+				console.log(input);
+				return this.handleTypeMessage(port,data)
 		}
 	}
 
