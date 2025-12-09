@@ -47,7 +47,6 @@ function Edit({item, editing, onEditStarted, onCancelEdit, onEditDone, onFinishE
         //information about the pressed key on mobiles in PREACT, so we are killing 2 birds with one 
         //stone here...
         <form onSubmit={(e)=>{
-            console.log("Edit.tsx: onSubmit")
             onFinishEdit(ref.current?.value)
             e.preventDefault()
         }}>

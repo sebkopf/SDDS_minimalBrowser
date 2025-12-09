@@ -24,7 +24,6 @@ export class Tobserver{
 	setActive(_val : boolean) { this.Factive = _val}
 	notify(){
 		if (this.Factive) this.Fcb(this.Fitem)
-		else console.log("not active")
 	}
 
 	constructor(_item: Tdescr, _cb : TobserverCb){

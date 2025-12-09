@@ -207,8 +207,6 @@ class TremoteServer extends TstructDescr{
 	connectionThread(){
 		this.FconnTimer = null
 
-		this.Fconns.log()
-
 		//first check for connections to be closed -> reduce the traffic with the server
 		this.Fconns.iterateRR(c=>{
 			if (c.task === "close" || c.task == "closeOpen"){
@@ -286,7 +284,6 @@ class TremoteServer extends TstructDescr{
 
 	static LINK_MSG_PATTERN = /^(\d+)\s+(.+)/
 	handleLinkMessage(port : number, data : string){
-		console.log(`handleLinkMessage port=${port} data="${data}"}`)
 
 		//remove seperator at the end (this is a bug in my ssds lib in C++)
 		//if (data.slice(-1) === ",") data=data.slice(0,-1)
@@ -375,8 +372,6 @@ class TremoteServer extends TstructDescr{
 	}
 
 	handleTypeMessage(port : number, data : string){
-		//toDo! check if struct already exists, compare
-		console.log("T answer received")
 		//console.log(data)
 		this.stopTypeRequests();
 		/**
@@ -397,7 +392,10 @@ class TremoteServer extends TstructDescr{
 		//split into cmd and payload
 		const match = input.match(TremoteServer.MSG_PATTERN)
 		//console.log(match)
-		if (!match) return
+		if (!match) {
+			console.log(input);
+			return;
+		}
 
 		const cmd = match[1];
 		const port = parseInt(match[2]);
@@ -443,7 +441,6 @@ class TremoteServer extends TstructDescr{
 		this.Fcomm.send(_msg);
 	}
 	doSendTypeReq(){
-		console.log("sendTypeReq")
 		this.send("T")
 	}
 

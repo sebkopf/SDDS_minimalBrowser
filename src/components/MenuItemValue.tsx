@@ -10,7 +10,6 @@ type TmenuItemValueProps = {
 }
 
 function MenuItemValue({item} : TmenuItemValueProps) {
-    //console.log(`render MenuItemValue ${item.name}`)
     const nav = useMenuNavContext()
     const editing = nav.focusedRow.value === item.idx && nav.editing.value === 1   
 
@@ -29,13 +28,11 @@ function MenuItemValue({item} : TmenuItemValueProps) {
     }
 
     function onEditDone(){
-        console.log("MenuItemValue call cancelEdit2")
         nav.editCanceled()
         observer.current.setActive(true)
     }
 
     function onFinishEdit(value: any){
-        console.log("MenuItemValue onFinishEdit")
         onCancelEdit()
         item.setValue(value)
     }
