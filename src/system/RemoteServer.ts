@@ -392,7 +392,9 @@ class TremoteServer extends TstructDescr{
 		//split into cmd and payload
 		const match = input.match(TremoteServer.MSG_PATTERN)
 		//console.log(match)
-		if (!match) {
+
+		// SK: report messages from microcontroller that start with numbers (from Log.xyz() calls)
+		if (!match || input.match(/^\d+/)) {
 			console.log(input);
 			return;
 		}
@@ -409,7 +411,7 @@ class TremoteServer extends TstructDescr{
 				return this.handleErrorMessage(port,data)
 			case "B": return //this.sendTypeReq()
 			case "t": 
-				console.log(input);
+				console.log(`structure: ${input}`);
 				return this.handleTypeMessage(port,data)
 		}
 	}
